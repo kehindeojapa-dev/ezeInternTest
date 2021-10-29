@@ -1,0 +1,34 @@
+.pricefilter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1em;
+  flex-wrap: wrap;
+  margin-top: 1em;
+}
+
+.pricefilter__title {
+  color: var(--primary2);
+  font-size: 1.5em;
+}
+
+.pricefilter__minmax {
+  display: flex;
+  gap: 1em;
+}
+.pricefilter__minmax input {
+  outline: none;
+  width: 100px;
+  font-weight: bold;
+  border: none;
+  padding: 0.3em 0.5em;
+  border-radius: 3px;
+}
+.pricefilter__minmax input[type="number"]::-webkit-inner-spin-button {
+  appearance: none;
+  margin: 0;
+}
+
+.pricefilter__minmax input::placeholder {
+  color: var(--primary1);
+}
