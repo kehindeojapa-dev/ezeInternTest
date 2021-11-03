@@ -24,6 +24,8 @@ const getSearchResult = (state, phones, setPhones) => {
   };
   const getByGrade = (phones) => {
     let resultContainer = [];
+    //clone state to avoid mutation
+    phones = JSON.parse(JSON.stringify(phones));
     phones?.forEach((item) => {
       let originalData = item.data;
       item.data = [];
@@ -40,6 +42,9 @@ const getSearchResult = (state, phones, setPhones) => {
   };
   const getByStorageSize = (phones) => {
     let resultContainer = [];
+    //clone state to avoid mutation
+    phones = JSON.parse(JSON.stringify(phones));
+
     phones.forEach((item) => {
       let originalData = item.data;
       item.data = [];
@@ -77,10 +82,8 @@ const getSearchResult = (state, phones, setPhones) => {
   }
   //(grade and storageSize only)
   else if (gradeTag && storageSizeTag && !nameTag) {
-    console.log("checking for grade and storage only");
     let phoneResult = getByGrade(phones);
     phoneResult = getByStorageSize(phoneResult);
-    console.log(phoneResult);
     setPhones(phoneResult);
   }
   //(name only)

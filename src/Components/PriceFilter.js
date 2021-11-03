@@ -1,16 +1,29 @@
 import { useState } from "react";
-
+import { useStateValue } from "../StateProvider";
 // Style
 import "./Styles/PriceFilter.css";
 
 function PriceFilter() {
-  const [minValue, setMinValue] = useState();
-  const [maxValue, setMaxValue] = useState();
+  const [state, dispatch] = useStateValue();
+
+  const [minValue, setMinValue] = useState("");
+  const [maxValue, setMaxValue] = useState("");
+
+  const fireFilter = (e) => {
+    e.preventDefault();
+    dispatch({
+      type: "MIN_MAX VALUES",
+      value: {
+        minValue,
+        maxValue,
+      },
+    });
+  };
 
   return (
     <div className="pricefilter">
       <div className="pricefilter__title">Price Filter</div>
-      <div className="pricefilter__minmax">
+      <form className="pricefilter__minmax">
         <input
           type="number"
           placeholder="Min"
@@ -25,7 +38,10 @@ function PriceFilter() {
           value={maxValue}
           onChange={(e) => setMaxValue(e.target.value)}
         />
-      </div>
+        <button type="submit" className="pricefilter__btn" onClick={fireFilter}>
+          Filter
+        </button>
+      </form>
     </div>
   );
 }

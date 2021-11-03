@@ -5,6 +5,7 @@ import { useStateValue } from "../StateProvider";
 import { applePhones } from "../data";
 
 import getSearchResult from "./getSearchResult";
+import getFilterResult from "./getFilterResult";
 
 // Style
 import "./Styles/Products.css";
@@ -36,10 +37,14 @@ function Products() {
       value: phones,
     });
   }, []);
+
+  useEffect(() => {
+    getFilterResult(state, state.mainData, setPhones);
+  }, [state.minPrice, state.maxPrice]);
+
   useEffect(() => {
     getSearchResult(state, state.mainData, setPhones);
   }, [state.searchTerms]);
-
   return (
     <div className="products__container">
       {phones.length > 0 ? (
