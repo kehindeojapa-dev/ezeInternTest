@@ -1,7 +1,7 @@
 //reducer function
 export const initialState = {
   searchTerms: [],
-  searchResult: [],
+  mainData: [],
   minPrice: 0,
   maxPrice: 2000,
 };
@@ -14,10 +14,10 @@ const reducer = (state, action) => {
         ...state,
         searchTerms: action.value,
       };
-    case "SEARCH_RESULT":
+    case "ORIGINAL_DATA":
       return {
         ...state,
-        searchResult: action.value,
+        mainData: action.value,
       };
     default:
       return state;

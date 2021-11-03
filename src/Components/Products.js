@@ -4,6 +4,8 @@ import { useStateValue } from "../StateProvider";
 // Fake data
 import { applePhones } from "../data";
 
+import getSearchResult from "./getSearchResult";
+
 // Style
 import "./Styles/Products.css";
 
@@ -28,73 +30,25 @@ function Products() {
 
   const [state, dispatch] = useStateValue();
 
-  // Break the searchTerm into name, grade, and storageSize
-
   useEffect(() => {
-    let nameTag = "",
-      gradeTag = "",
-      storageSizeTag = "";
-    if (state.searchTerms) {
-      state.searchTerms.forEach((term) => {
-        term = term.trim();
-        if (term.includes("iphone")) {
-          nameTag = term;
-        } else if (term.includes("gb")) {
-          storageSizeTag = term;
-        } else if (term.length === 2) {
-          gradeTag = term;
-        }
-      });
-    }
-    //search for iphone term
-    let newPhones = phones;
-    //Check for all three search items
-    if (nameTag && gradeTag && storageSizeTag) {
-      //search for nametag
-      newPhones = phones.filter((item) =>
-        item.name.toLowerCase().includes(nameTag)
-      );
-
-      newPhones.forEach((item) => {
-        let originalData = item.data;
-        item.data = [];
-        originalData.forEach((price) => {
-          if (price.price.grade === gradeTag.toUpperCase()) {
-            item.data.push(price);
-          }
-        });
-      });
-
-      newPhones.forEach((item) => {
-        let originalData = item.data;
-        item.data = [];
-        originalData.forEach((price) => {
-          if (price.price.storageSize === storageSizeTag.toUpperCase()) {
-            item.data.push(price);
-          }
-        });
-      });
-      // dispatch({
-      //   type: "SEARCH_RESULT",
-      //   value: newPhones,
-      // });
-      setPhones(newPhones);
-      // console.log(newPhones);
-      // console.log(state.searchTerms);
-    }
-  }, [state.searchTerms, phones, dispatch]);
-  // useEffect(() => {
-  //   if (state.searchResult.length > 0) {
-  //     setPhones(state.searchResult);
-  //   }
-  //   console.log(state);
-  // }, [state.searchResult]);
+    dispatch({
+      type: "ORIGINAL_DATA",
+      value: phones,
+    });
+  }, []);
+  useEffect(() => {
+    getSearchResult(state, state.mainData, setPhones);
+  }, [state.searchTerms]);
 
   return (
     <div className="products__container">
-      {phones.map((item) => {
-        return <Product details={item} key={item._id} />;
-      })}
+      {phones.length > 0 ? (
+        phones?.map((item) => {
+          return <Product details={item} key={item._id} />;
+        })
+      ) : (
+        <h1 className="product__error">NO RESULTS FOUND</h1>
+      )}
     </div>
   );
 }

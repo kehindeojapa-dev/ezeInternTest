@@ -34,6 +34,14 @@
   padding-bottom: 0.5em;
 }
 
+.product__error {
+  grid-column-start: 1;
+  grid-column-end: 5;
+  color: #fff;
+  font-size: 1.5em;
+  text-align: center;
+}
+
 @media (max-width: 600px) {
   .products__container {
     grid-template-columns: repeat(2, 1fr);
