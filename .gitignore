@@ -8,9 +8,7 @@
 # testing
 /coverage
 
-# mock data
-data.js
-data2.js
+
 
 # production
 /build
