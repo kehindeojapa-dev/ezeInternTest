@@ -25,7 +25,10 @@
   font-size: 0.8em;
 }
 
-/* .product__image */
+.product__image {
+  width: 100%;
+  padding-top: 1em;
+}
 
 .product__name {
   color: whitesmoke;
