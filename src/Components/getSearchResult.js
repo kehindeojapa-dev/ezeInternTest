@@ -5,10 +5,10 @@ const getSearchResult = (state, phones, setPhones) => {
   if (state.searchTerms) {
     state.searchTerms.forEach((term) => {
       term = term.trim();
-      if (term.includes("iphone")) {
-        nameTag = term;
-      } else if (term.includes("gb")) {
-        storageSizeTag = term;
+      if (term.toLowerCase().includes("iphone")) {
+        nameTag = term.toLowerCase();
+      } else if (term.toLowerCase().includes("gb")) {
+        storageSizeTag = term.toUpperCase();
       } else if (term.length === 2) {
         gradeTag = term;
       }

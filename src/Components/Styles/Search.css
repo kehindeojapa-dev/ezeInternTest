@@ -37,3 +37,14 @@
 .search__form__searchBtn:hover {
   opacity: 0.8;
 }
+
+@media (max-width: 450px) {
+  .search__form__searchInput {
+    font-size: 0.8em;
+    width: 240px;
+  }
+  .search__form__searchBtn {
+    padding-right: 0.4em;
+    font-size: 0.6em;
+  }
+}

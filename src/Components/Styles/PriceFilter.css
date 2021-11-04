@@ -32,3 +32,7 @@
 .pricefilter__minmax input::placeholder {
   color: var(--primary1);
 }
+
+.pricefilter__btn {
+  padding: 0 0.4em;
+}
