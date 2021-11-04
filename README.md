@@ -3,6 +3,7 @@
 This is an application i created for an intern application test.
 
 [VIEW APP](https://ezetest.netlify.app)
+![App Image](/public/eze1.png)
 
 ## Available Scripts
 
